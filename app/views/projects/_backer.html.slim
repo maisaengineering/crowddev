@@ -1,0 +1,54 @@
+script type="text/template" id="backer_template"
+  |{{#attributes}}
+  |{{confirmed_at}}
+
+  |{{#anonymous}}
+  = image_tag 'user.png', :class => 'user'
+  | &nbsp;
+  = t('.anonymous_backer')
+  = image_tag "badge.#{I18n.locale}.png", :class => "badge"
+  p= t('.anonymous_description')
+  |{{/anonymous}}
+
+  |{{^anonymous}}
+  |{{#user}}
+  a href="{{url}}"
+    img src="{{image}}" class="user"
+    |  {{medium_name}}
+    = image_tag "badge.#{I18n.locale}.png", :class => "badge"
+  p
+    |{{backs_text}}
+  |{{/user}}
+  |{{/anonymous}}
+
+  - if current_user and (current_user == @project.user or current_user.admin)
+    p.reward
+      = t('activerecord.attributes.backer.value')
+      |: 
+      |{{display_value}}
+      | . 
+      = t('activerecord.attributes.user.email')
+      |:
+      |{{#user}} 
+      |{{email}}
+      |{{^email}}
+      | &nbsp;
+      = t('not_informed')
+      |.
+      |{{/email}}
+      |{{/user}} 
+      br
+      |{{#reward}}
+      | &nbsp;
+      = t('activerecord.models.reward')
+      |: 
+      |{{display_minimum}} - {{medium_description}}
+      |{{/reward}}
+      |{{^reward}}
+      | &nbsp;
+      = t('.no_reward')
+      |{{/reward}}
+ 
+  |{{/attributes}}
+
+  .clear

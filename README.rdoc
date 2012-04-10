@@ -1,0 +1,62 @@
+ The app is developed with Ruby, using Rails and PostgreSQL as the database, só you gotta have those platforms already installed in your machine to run the system.
+
+If for you Ruby is the devil that used to make out with Sam Winchester, i suggest that you do some research first, or eles you'd be lost in the sand as i was. After a couple of messy trials i followed Daniel's suggestion and used RVM; if i knew about this tool before, this post would've been done much earlier.
+
+Once you have all the development platforms installed, the first thing to do is the creation of a database for the application. The database configuration file can be found in config/database.sample.yml, just duplicate it and rename the copy to database.yml or skip the duplication part. With that done, you'll need to edit the development section in the database configuration file, as below:
+
+`development:
+
+adapter: postgresql
+
+encoding: utf-8
+
+database: database_name
+
+pool: 5
+
+username: database_user
+
+password: 'database_user_password'
+
+host: localhost
+port: 5432 ` I left the other configurations untouched; i'm not a Ruby programmer, só i might make some mistakes during the process, but the configuration above worked fine for me; feel free to fix anything.
+
+Once the file is modified and saved, open up a terminal window. Navigate to the directory where catarse is located and run the command:
+
+~$ bundle install
+
+Wait for the process to finish. If it goes error-free, run the command:
+
+~$ rake db:migrate
+
+With that done, we can run the system. In the terminal, fire up the command: ~$ bundle exec unicorn -p 3000 Wait for the message “worker=0 ready” and then reach the system on http://localhost:3000/ If everything went as planned, you'll now facing this screen:
+
+The next step is to log into the system.
+
+The login is done with a Google Account, só just choose that option and grant the permissions when asked. You'll see your profile:
+
+To create a project, go to http://localhost:3000/projects/new
+
+Fill in the data and submit the project. You'll be redirected to the project page, as it's going to be shown once the app admins approve it.
+
+At this moment, you're still a regular user. To get administrative rights and approve the exhibition of a project on the main page, you need to do some steps:
+
+Fire up another terminal window and enter the following command:
+
+~$ rails c
+
+Enter the command:
+
+~$ u = User.first
+
+And set your user as admin:
+
+~$ u.update_attribute :admin, true
+
+That's it. Now you can access  http://localhost:3000/projects/pending  if everything went fine, and a page with the pending projects will be shown:
+
+To mark the project as active, just check the Visível (Visible), Recomendado(Recommended) and Home Page options.
+
+With that done, the project will be available to the users:
+
+I think that's all for now. I'd like to thank Softa for releasing the system to the community, because i'm sure that having it as a starting point will be very helpful to those wishing to implement this kind of system. And i'd like to thank Daniel for the tips which made this post possible, and i wish i can contribute to the project somehow.
