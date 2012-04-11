@@ -74,3 +74,4 @@ end
 
 # Putting pg to the end because of a weird bug with Lion, pg and openssl
 gem 'pg'
+gem "heroku", "~> 2.24.0"

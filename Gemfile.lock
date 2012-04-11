@@ -127,6 +127,11 @@ GEM
     fssm (0.2.7)
     haml (3.1.4)
     has_scope (0.5.1)
+    heroku (2.24.0)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.1)
+      rest-client (~> 1.6.1)
+      rubyzip
     http_accept_language (1.0.2)
     httparty (0.6.1)
       crack (= 0.1.8)
@@ -166,6 +171,7 @@ GEM
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.2.1)
+    netrc (0.7.1)
     nokogiri (1.4.7)
     oa-basic (0.1.6)
       multi_json (~> 0.0.2)
@@ -333,6 +339,7 @@ DEPENDENCIES
   fog
   formtastic (~> 1.1.0)
   haml
+  heroku (~> 2.24.0)
   http_accept_language
   httparty
   inherited_resources (= 1.1.2)
