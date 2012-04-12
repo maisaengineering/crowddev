@@ -41,7 +41,7 @@ test: &test
   pool: 5
   username: catarse
   
-
+create_in_mailee
 production:
   adapter: postgresql
   encoding: utf-8
